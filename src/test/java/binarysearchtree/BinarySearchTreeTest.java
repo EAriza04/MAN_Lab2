@@ -67,7 +67,6 @@ class BinarySearchTreeTest {
         }
 
         @Nested
-        @DisplayName("after pushing an element")
         class AfterPushing {
 
             String anElement = "an element";
