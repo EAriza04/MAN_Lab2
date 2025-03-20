@@ -115,20 +115,32 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
         if (this.value == null) {
             throw new BinarySearchTreeException("The element is not present in the binary search tree");
         }
-        if (comparator.compare(value, this.value) == 0) {
+        else if (comparator.compare(value, this.value) == 0) {
             this.value = null;
             this.left = null;
             this.right = null;
-        } else if (comparator.compare(value, this.value) < 0) {
+        }
+        else if (comparator.compare(value, this.value) < 0) {
             if (left == null) {
                 throw new BinarySearchTreeException("The element is not present in the binary search tree");
             }
-            left.removeBranch(value);
-        } else {
+            else if (comparator.compare(value, left.value) == 0){
+                left=null;
+            }
+            else{
+                left.removeBranch(value);
+            }
+        } 
+        else {
             if (right == null) {
                 throw new BinarySearchTreeException("The element is not present in the binary search tree");
             }
-            right.removeBranch(value);
+            else if (comparator.compare(value, right.value) == 0){
+                right=null;
+            }
+            else{
+                right.removeBranch(value);
+            };
         }
     }
 

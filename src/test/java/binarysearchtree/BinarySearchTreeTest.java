@@ -132,10 +132,19 @@ class BinarySearchTreeTest {
             }
 
             @Test
-            @DisplayName("the three is not a leaf")
-            void elementsAreLeaves() {
+            @DisplayName("the tree is not a leaf")
+            void treeIsNotLeaf() {
                 // Act + Assert
                 assertFalse(bst.isLeaf());
+            }
+
+            @Test
+            @DisplayName("the three is a leaf")
+            void treeIsLeaf() {
+                // Act + Assert
+                bst.removeBranch(secondElem);
+                bst.removeBranch(thirdElem);
+                assertTrue(bst.isLeaf());
             }
 
             @Test
