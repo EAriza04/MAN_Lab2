@@ -33,12 +33,29 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     }
 
     public BinarySearchTree(Comparator<T> comparator) {
-        // TODO
+        this.comparator = comparator;
+        this.value = null;
+        this.left = null;
+        this.right = null;
     }
 
     @Override
     public void insert(T value) {
-        // TODO
+        if (this.value == null) {
+            this.value = value;
+        } else if (comparator.compare(value, this.value) == 0) {
+            throw new BinarySearchTreeException("The element is already present in the binary search tree");
+        } else if (comparator.compare(value, this.value) < 0) {
+            if (left == null) {
+                left = new BinarySearchTree<>(comparator);
+            }
+            left.insert(value);
+        } else {
+            if (right == null) {
+                right = new BinarySearchTree<>(comparator);
+            }
+            right.insert(value);
+        }
     }
 
     @Override
@@ -55,25 +72,56 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public T minimum() {
-        // TODO
-        return null;
+        if (value == null) {
+            throw new BinarySearchTreeException("The binary tree is empty");
+        }
+        if (left == null) {
+            return value;
+        } else {
+            return left.minimum();
+        }
     }
 
     @Override
     public T maximum() {
-        // TODO
-        return null;
+        if (value == null) {
+            throw new BinarySearchTreeException("The binary tree is empty");
+        }
+        if (right == null) {
+            return this.value;
+        } else {
+            return right.maximum();
+        }
     }
 
     @Override
     public void removeBranch(T value){
-        // TODO
+        if (comparator.compare(value, this.value) == 0) {
+            this.value = null;
+            this.left = null;
+            this.right = null;
+        } else if (left == null && right == null) {
+            throw new BinarySearchTreeException("The element is not present in the binary search tree");
+        } else if (comparator.compare(value, this.value) < 0) {
+            if (left == null) {
+                throw new BinarySearchTreeException("The element is not present in the binary search tree");
+            }
+            left.removeBranch(value);
+        } else {
+            if (right == null) {
+                throw new BinarySearchTreeException("The element is not present in the binary search tree");
+            }
+            right.removeBranch(value);
+        }
     }
 
     @Override
     public int size() {
-        //TODO
-        return 0;
+        if (value == null) {
+            return 0;
+        } else {
+            return 1 + left.size() + right.size();
+        }
     }
 
     @Override
