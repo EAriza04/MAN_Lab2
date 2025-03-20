@@ -62,7 +62,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     public boolean isLeaf() {
         if(value == null){
             throw new BinarySearchTreeException("The binary tree is empty");
-         }
+        }
 
         return left == null && right == null;
     }
@@ -80,7 +80,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
         else if (left!=null && comparator.compare(value, this.value) < 0){
             res = left.contains(value);
         }
-        else if (right!=null && comparator.compare(value, this.value) > 0){
+        else if (right!=null){
             res = right.contains(value);
         }
         return res;
