@@ -32,21 +32,35 @@ class BinarySearchTreeTest {
         }
 
         @Test
-        @DisplayName("is empty")
-        void isEmpty() {
-            assertTrue(bst.isEmpty());
+        @DisplayName("size is 0")
+        void sizeIs0() {
+            // Arrange
+            int expectedSize = 0;
+            // Act + Assert
+            assertEquals(expectedSize, bst.size());
         }
 
         @Test
-        @DisplayName("throws EmptyBinarySearchTreeException when popped")
-        void throwsExceptionWhenPopped() {
-            assertThrows(EmptyBinarySearchTreeException.class, bst::pop);
+        @DisplayName("depth is 0")
+        void depthIs0() {
+            // Arrange
+            int expectedDepth = 0;
+            // Act + Assert
+            assertEquals(expectedDepth, bst.depth());
         }
 
         @Test
-        @DisplayName("throws EmptyBinarySearchTreeException when peeked")
-        void throwsExceptionWhenPeeked() {
-            assertThrows(EmptyBinarySearchTreeException.class, bst::peek);
+        @DisplayName("throws BinarySearchTreeException when maximum")
+        void throwsExceptionWhenMaximum() {
+            // Act + Assert
+            assertThrows(BinarySearchTreeException.class, bst::maximum);
+        }
+
+        @Test
+        @DisplayName("throws BinarySearchTreeException when minimum")
+        void throwsExceptionWhenMinimum() {
+            // Act + Assert
+            assertThrows(BinarySearchTreeException.class, bst::minimum);
         }
 
         @Nested

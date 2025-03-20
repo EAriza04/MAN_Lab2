@@ -69,7 +69,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     public boolean contains(T value) {
         boolean res=false;
         
-        if(value == null){
+        if(value == null ||this.value == null){
             res=false;
          }
         else if (comparator.compare(value, this.value)==0){
