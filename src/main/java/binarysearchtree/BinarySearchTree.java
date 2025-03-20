@@ -142,7 +142,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
             return 0;
         }
         else {
-            return Math.max(left.depth(), right.depth()) + 1;
+            return Math.max(left==null?0:left.depth(), right==null?0:right.depth()) + 1;
         }
     }
 

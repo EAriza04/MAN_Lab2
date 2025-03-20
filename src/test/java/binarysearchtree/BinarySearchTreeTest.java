@@ -3,9 +3,7 @@
 package binarysearchtree;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Comparator;
 
@@ -80,20 +78,32 @@ class BinarySearchTreeTest {
             }
 
             @Test
-            @DisplayName("size is no longer 0")
+            @DisplayName("size is 1")
             void sizeIsNot0() {
                 // Assert
                 assertEquals(1, bst.size());;
             }
 
             @Test
-            @DisplayName("depth is no longer 0")
+            @DisplayName("depth is 1")
             void depthIsNot0() {
                 // Assert
                 assertEquals(1, bst.depth());;
             }
 
-            
+            @Test
+            @DisplayName("the element is the maximum")
+            void elementIsMaximum() {
+                // Act + Assert
+                assertEquals(elem, bst.maximum());
+            }
+
+            @Test
+            @DisplayName("the element is the mimimum")
+            void elementIsMimimum() {
+                // Act + Assert
+                assertEquals(elem, bst.minimum());
+            }
         }
     }
 }
