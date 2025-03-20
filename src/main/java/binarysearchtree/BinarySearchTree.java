@@ -112,12 +112,13 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public void removeBranch(T value){
+        if (this.value == null) {
+            throw new BinarySearchTreeException("The element is not present in the binary search tree");
+        }
         if (comparator.compare(value, this.value) == 0) {
             this.value = null;
             this.left = null;
             this.right = null;
-        } else if (left == null && right == null) {
-            throw new BinarySearchTreeException("The element is not present in the binary search tree");
         } else if (comparator.compare(value, this.value) < 0) {
             if (left == null) {
                 throw new BinarySearchTreeException("The element is not present in the binary search tree");
