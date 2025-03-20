@@ -1,8 +1,6 @@
 package binarysearchtree;
 
 import java.util.Comparator;
-import java.util.List;
-import java.util.ArrayList;
 
 public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     private Comparator<T> comparator;
@@ -61,10 +59,10 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     @Override
     public boolean isLeaf() {
         if(value == null){
-            throw new BinarySearchTreeException("Three can't be empty");
+            throw new BinarySearchTreeException("The binary tree is empty");
          }
 
-        return (left == null && right == null);
+        return left == null && right == null;
     }
 
     @Override
@@ -133,11 +131,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public int size() {
-        if (value == null) {
-            return 0;
-        } else {
-            return 1 + left.size() + right.size();
-        }
+        return (value==null?0:1) + (left==null?0:left.size()) + (right==null?0:right.size());
     }
 
     @Override
@@ -146,7 +140,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
             return 0;
         }
         else {
-            return (Math.max(left.depth(), right.depth()) + 1);
+            return Math.max(left.depth(), right.depth()) + 1;
         }
     }
 
