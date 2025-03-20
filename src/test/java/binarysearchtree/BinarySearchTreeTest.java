@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Comparator;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -14,12 +17,12 @@ import org.junit.jupiter.api.Test;
 @DisplayName("A BinarySearchTree")
 class BinarySearchTreeTest {
 
-    BinarySearchTree<Object> bst;
+    BinarySearchTree<Integer> bst;
 
     @Test
     @DisplayName("is instantiated with new BinarySearchTree()")
     void isInstantiatedWithNew() {
-        new BinarySearchTree<>();
+        new BinarySearchTree<Integer>(Comparator.naturalOrder());
     }
 
     @Nested
@@ -28,7 +31,7 @@ class BinarySearchTreeTest {
 
         @BeforeEach
         void createNewBinarySearchTree() {
-            bst = new BinarySearchTree<>();
+            bst = new BinarySearchTree<Integer>(Comparator.naturalOrder());
         }
 
         @Test
