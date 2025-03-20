@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Comparator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -75,6 +73,13 @@ class BinarySearchTreeTest {
         }
 
         @Test
+        @DisplayName("throws BinarySearchTreeException when isLeaf")
+        void elementsAreLeaves() {
+            // Act + Assert
+            assertThrows(BinarySearchTreeException.class, () -> bst.isLeaf());;
+        }
+
+        @Test
         @DisplayName("contains returns false")
         void containsReturnsFalse() {
             // Act + Assert
@@ -82,51 +87,62 @@ class BinarySearchTreeTest {
         }
 
         @Nested
-        @DisplayName("after inserting an element")
+        @DisplayName("after inserting three elements")
         class AfterPushing {
 
             // Arrange
-            int elem = 10;
+            int firstElem = 10;
+            int secondElem = 20;
+            int thirdElem = 5;
 
             @BeforeEach
             void insertAnElement() {
                 // Act
-                bst.insert(elem);
+                bst.insert(firstElem);
+                bst.insert(secondElem);
+                bst.insert(thirdElem);
             }
 
             @Test
-            @DisplayName("size is 1")
+            @DisplayName("size is 3")
             void sizeIsNot0() {
                 // Assert
-                assertEquals(1, bst.size());;
+                assertEquals(3, bst.size());;
             }
 
             @Test
-            @DisplayName("depth is 1")
+            @DisplayName("depth is 2")
             void depthIsNot0() {
                 // Assert
-                assertEquals(1, bst.depth());;
+                assertEquals(2, bst.depth());;
             }
 
             @Test
-            @DisplayName("the element is the maximum")
-            void elementIsMaximum() {
+            @DisplayName("the second element is the maximum")
+            void secondElementIsMaximum() {
                 // Act + Assert
-                assertEquals(elem, bst.maximum());
+                assertEquals(secondElem, bst.maximum());
             }
 
             @Test
-            @DisplayName("the element is the mimimum")
-            void elementIsMimimum() {
+            @DisplayName("the third element is the mimimum")
+            void thirdeEementIsMimimum() {
                 // Act + Assert
-                assertEquals(elem, bst.minimum());
+                assertEquals(thirdElem, bst.minimum());
+            }
+
+            @Test
+            @DisplayName("the three is not a leaf")
+            void elementsAreLeaves() {
+                // Act + Assert
+                assertFalse(bst.isLeaf());
             }
 
             @Test
             @DisplayName("contains returns true if the element is present")
             void containsReturnsTrue() {
                 // Act + Assert
-                assertTrue(bst.contains(elem));
+                assertTrue(bst.contains(firstElem));
             }
 
             @Test
