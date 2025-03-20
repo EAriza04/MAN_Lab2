@@ -64,6 +64,13 @@ class BinarySearchTreeTest {
             assertThrows(BinarySearchTreeException.class, bst::minimum);
         }
 
+        @Test
+        @DisplayName("throws BinarySearchTreeException when removeBranch")
+        void throwsExceptionWhenRemoveBranch() {
+            // Act + Assert
+            assertThrows(BinarySearchTreeException.class, () -> bst.removeBranch(0));
+        }
+
         @Nested
         @DisplayName("after inserting an element")
         class AfterPushing {
