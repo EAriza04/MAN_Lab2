@@ -3,7 +3,9 @@
 package binarysearchtree;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Comparator;
 
@@ -72,6 +74,13 @@ class BinarySearchTreeTest {
             assertThrows(BinarySearchTreeException.class, () -> bst.removeBranch(0));
         }
 
+        @Test
+        @DisplayName("contains returns false")
+        void containsReturnsFalse() {
+            // Act + Assert
+            assertFalse(bst.contains(0));
+        }
+
         @Nested
         @DisplayName("after inserting an element")
         class AfterPushing {
@@ -112,6 +121,22 @@ class BinarySearchTreeTest {
                 // Act + Assert
                 assertEquals(elem, bst.minimum());
             }
+
+            @Test
+            @DisplayName("contains returns true if the element is present")
+            void containsReturnsTrue() {
+                // Act + Assert
+                assertTrue(bst.contains(elem));
+            }
+
+            @Test
+            @DisplayName("contains returns false if the element is not present")
+            void containsReturnsFalse() {
+                // Act + Assert
+                assertFalse(bst.contains(0));
+            }
+
+            
         }
     }
 }
