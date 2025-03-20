@@ -67,19 +67,29 @@ class BinarySearchTreeTest {
         }
 
         @Nested
+        @DisplayName("after inserting an element")
         class AfterPushing {
 
-            String anElement = "an element";
+            int anElement = 10;
 
             @BeforeEach
-            void pushAnElement() {
-                bst.push(anElement);
+            void insertAnElement() {
+                // Act
+                bst.insert(anElement);
             }
 
             @Test
-            @DisplayName("it is no longer empty")
-            void isNotEmpty() {
-                assertFalse(bst.isEmpty());
+            @DisplayName("size is no longer 0")
+            void sizeIsNot0() {
+                // Assert
+                assertEquals(1, bst.size());;
+            }
+
+            @Test
+            @DisplayName("depth is no longer 0")
+            void depthIsNot0() {
+                // Assert
+                assertEquals(1, bst.depth());;
             }
 
             @Test
