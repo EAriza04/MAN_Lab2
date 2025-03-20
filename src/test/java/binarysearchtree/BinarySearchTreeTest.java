@@ -173,6 +173,10 @@ class BinarySearchTreeTest {
             @DisplayName("removeBranch removes the branches successfully")
             void removeBranchRemovesBranches() {
                 // Act
+                bst.insert(0);
+                bst.insert(30);
+                bst.removeBranch(0);
+                bst.removeBranch(30);
                 bst.removeBranch(secondElem);
                 bst.removeBranch(thirdElem);
                 bst.removeBranch(firstElem);
