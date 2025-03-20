@@ -80,7 +80,7 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
         else if (left!=null && comparator.compare(value, this.value) < 0){
             res = left.contains(value);
         }
-        else if (right!=null){
+        else if (right!=null && comparator.compare(value, this.value) > 0){
             res = right.contains(value);
         }
         return res;

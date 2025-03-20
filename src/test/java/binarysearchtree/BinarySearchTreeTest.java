@@ -38,6 +38,7 @@ class BinarySearchTreeTest {
         void size_EmptyTree_ReturnsZero() {
             // Arrange
             int expectedSize = 0;
+
             // Act + Assert
             assertEquals(expectedSize, bst.size());
         }
@@ -47,6 +48,7 @@ class BinarySearchTreeTest {
         void depth_EmptyTree_ReturnsZero() {
             // Arrange
             int expectedDepth = 0;
+
             // Act + Assert
             assertEquals(expectedDepth, bst.depth());
         }
@@ -190,8 +192,10 @@ class BinarySearchTreeTest {
                 bst.removeBranch(fourthElem);
                 bst.removeBranch(fifthElem);
                 bst.removeBranch(thirdElem);
+                
                 // Assert
                 assertFalse(bst.isLeaf());
+                assertFalse(bst.contains(fourthElem));
                 assertEquals(2, bst.size());
             }
 
@@ -200,6 +204,7 @@ class BinarySearchTreeTest {
             void removeBranch_RootElement_RemovesTree() {
                 // Act
                 bst.removeBranch(firstElem);
+                
                 // Assert
                 assertEquals(0, bst.size());
             }
@@ -218,7 +223,7 @@ class BinarySearchTreeTest {
                 // Act + Assert
                 assertEquals("10(5(3,),20(,30))", bst.render());
             }
-
+  
         }
     }
 }
