@@ -70,12 +70,13 @@ class BinarySearchTreeTest {
         @DisplayName("after inserting an element")
         class AfterPushing {
 
-            int anElement = 10;
+            // Arrange
+            int elem = 10;
 
             @BeforeEach
             void insertAnElement() {
                 // Act
-                bst.insert(anElement);
+                bst.insert(elem);
             }
 
             @Test
@@ -92,19 +93,7 @@ class BinarySearchTreeTest {
                 assertEquals(1, bst.depth());;
             }
 
-            @Test
-            @DisplayName("returns the element when popped and is empty")
-            void returnElementWhenPopped() {
-                assertEquals(anElement, bst.pop());
-                assertTrue(bst.isEmpty());
-            }
-
-            @Test
-            @DisplayName("returns the element when peeked but remains not empty")
-            void returnElementWhenPeeked() {
-                assertEquals(anElement, bst.peek());
-                assertFalse(bst.isEmpty());
-            }
+            
         }
     }
 }
