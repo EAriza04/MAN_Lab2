@@ -29,6 +29,7 @@ class BinarySearchTreeTest {
 
         @BeforeEach
         void createNewBinarySearchTree() {
+            // Arrange
             bst = new BinarySearchTree<Integer>(Comparator.naturalOrder());
         }
 
@@ -54,14 +55,14 @@ class BinarySearchTreeTest {
         @DisplayName("throws BinarySearchTreeException when maximum")
         void throwsExceptionWhenMaximum() {
             // Act + Assert
-            assertThrows(BinarySearchTreeException.class, bst::maximum);
+            assertThrows(BinarySearchTreeException.class, () -> bst.maximum());
         }
 
         @Test
         @DisplayName("throws BinarySearchTreeException when minimum")
         void throwsExceptionWhenMinimum() {
             // Act + Assert
-            assertThrows(BinarySearchTreeException.class, bst::minimum);
+            assertThrows(BinarySearchTreeException.class, () -> bst.minimum());
         }
 
         @Test
