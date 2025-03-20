@@ -60,14 +60,30 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public boolean isLeaf() {
-        // TODO
-        return false;
+        if(value == null){
+            throw new BinarySearchTreeException("Three can't be empty");
+         }
+
+        return (left == null && right == null);
     }
 
     @Override
     public boolean contains(T value) {
-        // TODO
-        return false;
+        boolean res=false;
+        
+        if(value == null){
+            res=false;
+         }
+        else if (comparator.compare(value, this.value)==0){
+            res = true;
+        }
+        else if (left!=null && comparator.compare(value, this.value) < 0){
+            res = left.contains(value);
+        }
+        else if (right!=null && comparator.compare(value, this.value) > 0){
+            res = right.contains(value);
+        }
+        return res;
     }
 
     @Override
@@ -126,8 +142,12 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public int depth() {
-        // TODO
-        return 0;
+        if (value == null) {
+            return 0;
+        }
+        else {
+            return (Math.max(left.depth(), right.depth()) + 1);
+        }
     }
 
     // Complex operations
