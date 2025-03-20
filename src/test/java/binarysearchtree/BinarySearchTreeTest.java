@@ -142,7 +142,8 @@ class BinarySearchTreeTest {
             @DisplayName("contains returns true if the element is present")
             void containsReturnsTrue() {
                 // Act + Assert
-                assertTrue(bst.contains(firstElem));
+                assertTrue(bst.contains(secondElem));
+                assertTrue(bst.contains(thirdElem));
             }
 
             @Test
@@ -152,7 +153,39 @@ class BinarySearchTreeTest {
                 assertFalse(bst.contains(0));
             }
 
-            
+            @Test
+            @DisplayName("throws BinarySearchTreeException when inserting an element that is already in the tree")
+            void throwsExceptionWhenInsertDuplicate() {
+                // Act + Assert
+                assertThrows(BinarySearchTreeException.class, () -> bst.insert(firstElem));
+            }
+
+            @Test
+            @DisplayName("removeBranch removes the branches successfully")
+            void removeBranchRemovesBranches() {
+                // Act
+                bst.removeBranch(secondElem);
+                bst.removeBranch(thirdElem);
+                bst.removeBranch(firstElem);
+                // Assert
+                assertEquals(0, bst.size());
+            }
+
+            @Test
+            @DisplayName("throws BinarySearchTreeException when removeBranch if the element is not present")
+            void throwsExceptionWhenRemoveBranchIsNotPresent() {
+                // Act + Assert
+                assertThrows(BinarySearchTreeException.class, () -> bst.removeBranch(0));
+                assertThrows(BinarySearchTreeException.class, () -> bst.removeBranch(30));
+            }
+
+            @Test
+            @DisplayName("render returns a representation of the tree")
+            void renderReturnsRepresentation() {
+                // Act + Assert
+                assertEquals("10(5,20)", bst.render());
+            }
+
         }
     }
 }
