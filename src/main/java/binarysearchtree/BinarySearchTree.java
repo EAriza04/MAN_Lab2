@@ -3,6 +3,7 @@
 package binarysearchtree;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     private Comparator<T> comparator;
@@ -162,4 +163,19 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     // Complex operations
     // (Estas operaciones se incluirán más adelante para ser realizadas en la segunda
     // sesión de laboratorio de esta práctica)
+
+    @Override
+    public void removeValue(T value) {
+
+    }
+
+    @Override
+    public List<T> inOrder() {
+        return null;
+    }
+
+    @Override
+    public void balance() {
+        
+    }
 }
