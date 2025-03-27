@@ -279,7 +279,21 @@ class BinarySearchTreeTest {
                 //Assert
                 assertEquals(previousSize-5, bst.size());
             }
-  
+
+            @Test
+            @DisplayName("balancing an unbalanced tree balances the tree")
+            void balance_UnbalancedTree_BalancesTheTree() {
+                // Arrange
+                bst.insert(40);
+                bst.insert(50);
+                
+                // Act
+                bst.balance();
+
+                // Assert
+                assertEquals("20(5(3,10),40(30,50))", bst.render());
+            }
+
         }
     }
 }

@@ -230,12 +230,14 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public void balance() {
-        List<T> list = inOrder();
-        BinarySearchTree<T> balancedTree = buildBalancedTree(list, 0, list.size() - 1);
-        
-        this.value = balancedTree.value;
-        this.left = balancedTree.left;
-        this.right = balancedTree.right;
+        if (left != null && right != null && Math.abs(left.depth() - right.depth()) >= 1) {
+            List<T> list = inOrder();
+            BinarySearchTree<T> balancedTree = buildBalancedTree(list, 0, list.size() - 1);
+            
+            this.value = balancedTree.value;
+            this.left = balancedTree.left;
+            this.right = balancedTree.right;
+        }
     }
 
     private BinarySearchTree<T> buildBalancedTree(List<T> list, int start, int end) {
