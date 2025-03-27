@@ -270,15 +270,10 @@ class BinarySearchTreeTest {
                 int valueToRemove5 = 20;
 
                 // Act 
-                System.out.println(bst.render());
                 bst.removeValue(valueToRemove1);
-                System.out.println(bst.render());
                 bst.removeValue(valueToRemove2);
-                System.out.println(bst.render());
                 bst.removeValue(valueToRemove3);
-                System.out.println(bst.render());
                 bst.removeValue(valueToRemove4);
-                System.out.println(bst.render());
                 bst.removeValue(valueToRemove5);
 
                 //Assert
