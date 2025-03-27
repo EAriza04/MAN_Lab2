@@ -230,6 +230,27 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public void balance() {
+        List<T> list = inOrder();
+        BinarySearchTree<T> balancedTree = buildBalancedTree(list, 0, list.size() - 1);
         
+        this.value = balancedTree.value;
+        this.left = balancedTree.left;
+        this.right = balancedTree.right;
     }
+
+    private BinarySearchTree<T> buildBalancedTree(List<T> list, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        
+        int mid = (start + end) / 2;
+        BinarySearchTree<T> node = new BinarySearchTree<>(this.comparator);
+        node.value = list.get(mid);
+        
+        node.left = buildBalancedTree(list, start, mid - 1);
+        node.right = buildBalancedTree(list, mid + 1, end);
+        
+        return node;
+    }
+    
 }
