@@ -4,6 +4,7 @@ package binarysearchtree;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.ArrayList;
 
 public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
     private Comparator<T> comparator;
@@ -166,12 +167,65 @@ public class BinarySearchTree<T> implements BinarySearchTreeStructure<T> {
 
     @Override
     public void removeValue(T value) {
-
+        if (this.value == null) {
+            throw new BinarySearchTreeException("The element is not present in the binary search tree");
+        }
+        else if (comparator.compare(value, this.value) == 0){
+            if (left == null && right == null) {
+                this.value = null;
+            }
+            else if (left == null) {
+                this.value = right.value;
+                BinarySearchTree<T> temp = right;
+                left = temp.left;
+                right = temp.right;
+            }
+            else if (right == null) {
+                this.value = left.value;
+                BinarySearchTree<T> temp = left;
+                left = temp.left;
+                right = temp.right;
+            }
+            else {
+                this.value = right.minimum();
+                right.removeValue(this.value);
+            }
+        }
+        else if (comparator.compare(value, this.value) < 0) {
+            if (left==null){
+                throw new BinarySearchTreeException("The element is not present in the binary search tree");
+            }
+            left.removeValue(value);
+            if(left.value==null){
+                left=null;
+            }
+        }
+        else {
+            if (right==null){
+                throw new BinarySearchTreeException("The element is not present in the binary search tree");
+            }
+            right.removeValue(value);
+            if(right.value==null){
+                right=null;
+            }
+        }
     }
 
     @Override
     public List<T> inOrder() {
-        return null;
+        List<T> res = new ArrayList<T>();
+
+        if(left!=null){
+            res.addAll(left.inOrder());
+        }
+        if(value!=null){
+            res.add(value);
+        }
+        if(right!=null){
+            res.addAll(right.inOrder());
+        }
+
+        return res;
     }
 
     @Override

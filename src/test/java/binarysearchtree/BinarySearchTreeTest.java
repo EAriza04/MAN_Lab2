@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Comparator;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -93,6 +94,20 @@ class BinarySearchTreeTest {
         void render_EmptyTree_ReturnsEmptyString() {
             // Act + Assert
             assertEquals("", bst.render());
+        }
+
+        @Test
+        @DisplayName("inOrder returns an empty list")
+        void inOrder_EmptyTree_ReturnsEmptyList() {
+            // Act + Assert
+            assertTrue(bst.inOrder().isEmpty());
+        }
+
+        @Test
+        @DisplayName("throws BinarySearchTreeException when removeValue if the tree is empty")
+        void removeValue_ElementNotPresent_ThrowsBSTException() {
+            // Act + Assert
+            assertThrows(BinarySearchTreeException.class, () -> bst.removeValue(0));
         }
 
         @Nested
@@ -222,6 +237,52 @@ class BinarySearchTreeTest {
             void render_NotEmptyTree_ReturnsRepresentation() {
                 // Act + Assert
                 assertEquals("10(5(3,),20(,30))", bst.render());
+            }
+
+            @Test
+            @DisplayName("inOrder returns a list with the tree elements in order")
+            void inOrder_NotEmptyTree_ReturnsOrderedList() {
+                // Arrange
+                List<Integer> expectedList = List.of(3, 5, 10, 20, 30);
+
+                // Act + Assert
+                assertEquals(expectedList, bst.inOrder());
+            }
+
+            @Test
+            @DisplayName("throws BinarySearchTreeException when removeValue if the element is not present")
+            void removeValue_ElementNotPresent_ThrowsBSTException() {
+
+                // Act + Assert
+                assertThrows(BinarySearchTreeException.class, () -> bst.removeValue(0));
+                assertThrows(BinarySearchTreeException.class, () -> bst.removeValue(50));
+            }
+
+            @Test
+            @DisplayName("removeValue returns a list with the tree elements in order")
+            void removeValue_NotEmptyTree_RemovesValueSuccessfully() {
+                // Arrange
+                int previousSize = bst.size();
+                int valueToRemove1 = 10;
+                int valueToRemove2 = 5;
+                int valueToRemove3 = 3;
+                int valueToRemove4 = 30;
+                int valueToRemove5 = 20;
+
+                // Act 
+                System.out.println(bst.render());
+                bst.removeValue(valueToRemove1);
+                System.out.println(bst.render());
+                bst.removeValue(valueToRemove2);
+                System.out.println(bst.render());
+                bst.removeValue(valueToRemove3);
+                System.out.println(bst.render());
+                bst.removeValue(valueToRemove4);
+                System.out.println(bst.render());
+                bst.removeValue(valueToRemove5);
+
+                //Assert
+                assertEquals(previousSize-5, bst.size());
             }
   
         }
